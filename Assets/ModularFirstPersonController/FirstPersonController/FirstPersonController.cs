@@ -25,6 +25,8 @@ public class FirstPersonController : MonoBehaviour
 	private int _fallHash;
 	private int _groundedHash;
 
+	private int _currentWeapon;
+
     #region Camera Movement Variables
 
     public Camera playerCamera;
@@ -139,6 +141,22 @@ public class FirstPersonController : MonoBehaviour
 
     #endregion
 
+	private int currentWeapon = 0;
+
+	public GameObject grenadePrefab;
+
+	public GameObject grenadeModel;
+
+	public GameObject playerHand;
+
+	public GameObject rocketPrefab;
+
+	public GameObject rocketLauncherModel;
+
+	public float cooldownTimer = 0.6f;
+
+	private bool canShoot = true;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -152,6 +170,7 @@ public class FirstPersonController : MonoBehaviour
 		_jumpHash = Animator.StringToHash("Jump");
 		_fallHash = Animator.StringToHash("Falling");
 		_groundedHash = Animator.StringToHash("Grounded");
+		_currentWeapon = Animator.StringToHash("currentWeapon");
 
         // Set internal variables
         playerCamera.fieldOfView = fov;
@@ -378,6 +397,70 @@ public class FirstPersonController : MonoBehaviour
         {
             HeadBob();
         }
+
+		if(Input.GetKeyDown(KeyCode.Mouse0) && canShoot){
+			canShoot = false;
+			cooldownTimer = 0.6f;
+			// Shooting with fingergun
+			if (currentWeapon == 0){
+				Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
+				if (Physics.Raycast(ray, out RaycastHit raycastHit)) {
+					if (raycastHit.transform.tag == "Physics"){ 
+						raycastHit.rigidbody.AddForceAtPosition(ray.direction * 500, raycastHit.point);
+						raycastHit.rigidbody.constraints = RigidbodyConstraints.None;
+					}
+				}
+			}
+			
+			// Throwing grenade
+			else if (currentWeapon == 1){
+				GameObject grenade = Instantiate(grenadePrefab, playerHand.transform.position, playerHand.transform.rotation);
+				grenade.GetComponent<Rigidbody>().AddForce(playerCamera.transform.forward * 100);
+			}
+
+			// Shooting Rocket
+			else if (currentWeapon == 2){
+				GameObject rocket = Instantiate(rocketPrefab, playerCamera.transform.position, playerCamera.transform.rotation);
+			}
+		}
+
+		cooldownTimer -= Time.deltaTime;
+
+		if (cooldownTimer <= 0.0f){
+			canShoot = true;
+		}
+
+		if(Input.GetKeyDown(KeyCode.Mouse1)){
+			Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
+			if (Physics.Raycast(ray, out RaycastHit raycastHit)) {
+				if (raycastHit.transform.tag == "Physics"){ 
+					if (raycastHit.rigidbody.constraints == RigidbodyConstraints.None){
+						raycastHit.rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+					}
+					else {
+						raycastHit.rigidbody.constraints = RigidbodyConstraints.None;
+					}
+				}
+			}
+		}
+
+
+		if(Input.GetKeyDown(KeyCode.Alpha1)){
+			switchWeapon(0);
+			rocketLauncherModel.SetActive(false);
+			grenadeModel.SetActive(false);
+		}
+		else if (Input.GetKeyDown(KeyCode.Alpha2)){
+			switchWeapon(1);
+			rocketLauncherModel.SetActive(false);
+			grenadeModel.SetActive(true);
+		}
+
+		else if (Input.GetKeyDown(KeyCode.Alpha3)){
+			switchWeapon(2);
+			grenadeModel.SetActive(false);
+			rocketLauncherModel.SetActive(true);
+		}
     }
 
     void FixedUpdate()
@@ -400,7 +483,7 @@ public class FirstPersonController : MonoBehaviour
                 isWalking = false;
             }
 
-            // All movement calculations shile sprint is active
+            // All movement calculations while sprint is active
             if (enableSprint && Input.GetKey(sprintKey) && sprintRemaining > 0f && !isSprintCooldown)
             {
                 targetVelocity = transform.TransformDirection(targetVelocity) * sprintSpeed;
@@ -463,8 +546,8 @@ public class FirstPersonController : MonoBehaviour
 
 				Vector3 animationVector = transform.InverseTransformDirection(velocityChange);
 
-				animator.SetFloat(_xVelHash, animationVector.x);
-				animator.SetFloat(_yVelHash, animationVector.z);
+				animator.SetFloat(_xVelHash, (float)animationVector.x);
+				animator.SetFloat(_yVelHash, (float)animationVector.z);
             }
         }
 
@@ -490,6 +573,11 @@ public class FirstPersonController : MonoBehaviour
 			setAnimationGrounding();
         }
     }
+
+	private void switchWeapon(int nextWeapon){
+		currentWeapon = nextWeapon;
+		animator.SetFloat(_currentWeapon, (float)currentWeapon);
+	}
 
 	private void setAnimationGrounding(){
 		animator.SetBool(_fallHash, !isGrounded);
@@ -640,6 +728,13 @@ public class FirstPersonController : MonoBehaviour
 
         EditorGUILayout.Space();
 
+		#region Prefabs
+		fpc.grenadePrefab = (GameObject)EditorGUILayout.ObjectField(new GUIContent("Grenade", "Grenade prefab."), fpc.grenadePrefab, typeof(GameObject), true);
+		fpc.grenadeModel = (GameObject)EditorGUILayout.ObjectField(new GUIContent("Grenade Model", "Grenade that is in the characters hand"), fpc.grenadeModel, typeof(GameObject), true);
+		fpc.playerHand = (GameObject)EditorGUILayout.ObjectField(new GUIContent("Player Hand", "player hand"), fpc.playerHand, typeof(GameObject), true);
+		fpc.rocketPrefab = (GameObject)EditorGUILayout.ObjectField(new GUIContent("Rocket", "Rocket prefab."), fpc.rocketPrefab, typeof(GameObject), true);
+		fpc.rocketLauncherModel = (GameObject)EditorGUILayout.ObjectField(new GUIContent("Rocket Launcher Model", "rocket launcher that is in the characters hand"), fpc.rocketLauncherModel, typeof(GameObject), true);
+
         #region Camera Zoom Setup
 
         GUILayout.Label("Zoom", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleLeft, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
@@ -656,6 +751,8 @@ public class FirstPersonController : MonoBehaviour
         #endregion
 
         #endregion
+
+		#endregion
 
         #region Movement Setup
 
