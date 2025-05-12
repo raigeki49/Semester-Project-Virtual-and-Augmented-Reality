@@ -8062,7 +8062,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3321019878548125065, guid: 9af55394096b68c42b07d13f698ac0c0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.644217
+      value: -18.297
       objectReference: {fileID: 0}
     - target: {fileID: 3321019878548125065, guid: 9af55394096b68c42b07d13f698ac0c0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9271,7 +9271,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5832447615022037584, guid: 10b33a08141b1154f87a5c4289e543ac, type: 3}
       propertyPath: m_WarningMessage
-      value: 
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'CC_Base_R_Forearm'\n\tTransform 'CC_Base_R_Hand'\n\tTransform
+        'CC_Base_R_Upperarm'\n\tTransform 'CC_Base_R_Forearm'\n\tTransform 'CC_Base_R_Hand'\n\tTransform
+        'CC_Base_R_Upperarm'\n\tTransform 'CC_Base_R_Forearm'\n\tTransform 'CC_Base_R_Hand'\n\tTransform
+        'CC_Base_R_Upperarm'"
       objectReference: {fileID: 0}
     - target: {fileID: 7297708112610157616, guid: 10b33a08141b1154f87a5c4289e543ac, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
@@ -10352,7 +10357,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3667b1c4d7f532647b9156782c0c80f0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -23.012182
+      value: -22.8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3667b1c4d7f532647b9156782c0c80f0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10360,7 +10365,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3667b1c4d7f532647b9156782c0c80f0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17.345993
+      value: 17.08
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3667b1c4d7f532647b9156782c0c80f0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -17926,7 +17931,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4759606077516059406, guid: d90aae874bef7074eac4ba2f7fa1097d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.96
+      value: -18.4
       objectReference: {fileID: 0}
     - target: {fileID: 4759606077516059406, guid: d90aae874bef7074eac4ba2f7fa1097d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -20026,7 +20031,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1177731139114268019, guid: a80e693172871c146bd1012208b1c07f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19.200203
+      value: -18.71
       objectReference: {fileID: 0}
     - target: {fileID: 1177731139114268019, guid: a80e693172871c146bd1012208b1c07f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -20034,7 +20039,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1177731139114268019, guid: a80e693172871c146bd1012208b1c07f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 16.887606
+      value: 17.138
       objectReference: {fileID: 0}
     - target: {fileID: 1177731139114268019, guid: a80e693172871c146bd1012208b1c07f, type: 3}
       propertyPath: m_LocalRotation.w
