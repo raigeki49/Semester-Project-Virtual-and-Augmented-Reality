@@ -405,9 +405,10 @@ public class FirstPersonController : MonoBehaviour
 			if (currentWeapon == 0){
 				Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
 				if (Physics.Raycast(ray, out RaycastHit raycastHit)) {
-					if (raycastHit.transform.tag == "Physics"){ 
-						raycastHit.rigidbody.AddForceAtPosition(ray.direction * 500, raycastHit.point);
+					if (raycastHit.transform.tag == "Physics"){
 						raycastHit.rigidbody.constraints = RigidbodyConstraints.None;
+						raycastHit.rigidbody.isKinematic = false;
+						raycastHit.rigidbody.AddForceAtPosition(ray.direction * 500, raycastHit.point);
 					}
 				}
 			}
@@ -436,6 +437,7 @@ public class FirstPersonController : MonoBehaviour
 				if (raycastHit.transform.tag == "Physics"){ 
 					if (raycastHit.rigidbody.constraints == RigidbodyConstraints.None){
 						raycastHit.rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+                        raycastHit.rigidbody.isKinematic = true;
 					}
 					else {
 						raycastHit.rigidbody.constraints = RigidbodyConstraints.None;

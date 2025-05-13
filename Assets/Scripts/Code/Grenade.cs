@@ -35,10 +35,11 @@ public class Grenade: MonoBehaviour
 			if (nearbyObjects.tag == "Physics" || nearbyObjects.tag == "Player"){
 				Rigidbody rb = nearbyObjects.GetComponent<Rigidbody>();
 				if (rb != null){
-					rb.AddExplosionForce(700f, transform.position, 4f);
 					if (nearbyObjects.tag != "Player"){
 						rb.constraints = RigidbodyConstraints.None;
+						rb.isKinematic = false;
 					}
+					rb.AddExplosionForce(700f, transform.position, 4f);
 				}
 			}
 		}

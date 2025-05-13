@@ -43,10 +43,11 @@ public class Rocket: MonoBehaviour
 			foreach (Collider nearbyObjects in colliders){
 				Rigidbody rb = nearbyObjects.GetComponent<Rigidbody>();
 				if (rb != null){
-					rb.AddExplosionForce(1000f, transform.position, 10f, 3.0F);
 					if (nearbyObjects.tag != "Player"){
 						rb.constraints = RigidbodyConstraints.None;
+						rb.isKinematic = false;
 					}
+					rb.AddExplosionForce(1000f, transform.position, 10f, 3.0F);
 				}
 			}
 			source.clip = sounds[Random.Range(0, sounds.Length-1)];
