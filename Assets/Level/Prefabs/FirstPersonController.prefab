@@ -394,6 +394,7 @@ GameObject:
   - component: {fileID: 7297708112380806331}
   - component: {fileID: 7297708112380806330}
   - component: {fileID: 2037814221175327875}
+  - component: {fileID: 1042368344002182223}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: MainCamera
@@ -520,6 +521,21 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &1042368344002182223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7297708112380806329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -474324423, guid: 691beab1efc6cc749b43774f1b7c22eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayLines: 1
+  zOnShader: {fileID: 4800000, guid: d002ef982c284e44f8ef33d1048d6371, type: 3}
+  zOffShader: {fileID: 4800000, guid: 9a88049561e09f747aa121eaa34c0864, type: 3}
 --- !u!1 &7297708112460167335
 GameObject:
   m_ObjectHideFlags: 0
@@ -939,7 +955,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7297708113770114607}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 00748437f120c7d468643d1aea2f3479, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1062,12 +1078,7 @@ Animator:
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'CC_Base_R_Forearm'\n\tTransform 'CC_Base_R_Hand'\n\tTransform
-    'CC_Base_R_Upperarm'\n\tTransform 'CC_Base_R_Forearm'\n\tTransform 'CC_Base_R_Hand'\n\tTransform
-    'CC_Base_R_Upperarm'\n\tTransform 'CC_Base_R_Forearm'\n\tTransform 'CC_Base_R_Hand'\n\tTransform
-    'CC_Base_R_Upperarm'"
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0

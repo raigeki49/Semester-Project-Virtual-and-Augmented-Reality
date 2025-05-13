@@ -8,6 +8,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Physics = RotaryHeart.Lib.PhysicsExtension.Physics;
+using RotaryHeart.Lib.PhysicsExtension;
 
 #if UNITY_EDITOR
     using UnityEditor;
@@ -156,6 +158,18 @@ public class FirstPersonController : MonoBehaviour
 	public float cooldownTimer = 0.6f;
 
 	private bool canShoot = true;
+	private float climbSpeed = 12f;
+	private bool climbing = false;
+	private float climbJumpUpForce;
+    private float climbJumpBackForce;
+
+	private float detectionLength = 0.7f;
+    private float sphereCastRadius = 0.25f;
+    private float maxWallLookAngle = 30f;
+    private float wallLookAngle;
+
+    private RaycastHit frontWallHit;
+    private bool wallFront;
 
     private void Awake()
     {
@@ -463,6 +477,9 @@ public class FirstPersonController : MonoBehaviour
 			grenadeModel.SetActive(false);
 			rocketLauncherModel.SetActive(true);
 		}
+
+		WallCheck();
+		WallStates();
     }
 
     void FixedUpdate()
@@ -553,8 +570,42 @@ public class FirstPersonController : MonoBehaviour
             }
         }
 
+		if(climbing){
+			rb.linearVelocity = new Vector3(rb.linearVelocity.x, climbSpeed, rb.linearVelocity.z);
+		}
+
         #endregion
     }
+
+	private void WallCheck(){
+		Vector3 origin = new Vector3(transform.position.x, transform.position.y - (transform.localScale.y * .5f), transform.position.z);
+		Vector3 direction = transform.TransformDirection(Vector3.forward);
+		wallFront = Physics.SphereCast(origin, sphereCastRadius, direction, out frontWallHit, detectionLength, PreviewCondition.Editor);
+        wallLookAngle = Vector3.Angle(direction, -frontWallHit.normal);
+	}
+
+	private void WallStates(){
+		if (wallFront && Input.GetKey(KeyCode.W) && wallLookAngle < maxWallLookAngle)
+        {
+            if (!climbing){
+				StartClimbing();
+			}
+        }
+		else
+		{
+			if (climbing){
+				StopClimbing();
+			}
+		}
+	}
+
+	private void StartClimbing(){
+		climbing = true;
+	}
+
+	private void StopClimbing(){
+		climbing = false;
+	}
 
     // Sets isGrounded based on a raycast sent straigth down from the player object
     private void CheckGround()
