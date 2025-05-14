@@ -124,7 +124,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1415556611663978}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 296932e9aa844fa45aa8ea4420b8567e, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff431fa47489fc642ae6b09ade8f61c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTime: 0.8
+  targetTime: 1.5
   explosionEffect: {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
   sounds:
   - {fileID: 8300000, guid: 8524588a69a4f3e40bb597b6221138f1, type: 3}

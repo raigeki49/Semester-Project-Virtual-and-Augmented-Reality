@@ -29,7 +29,7 @@ public class Grenade: MonoBehaviour
 	void timerEnded(){
 		GameObject explosion = Instantiate(explosionEffect, transform.position, transform.rotation);
 
-		Collider[] colliders = Physics.OverlapSphere(transform.position, 4f);
+		Collider[] colliders = Physics.OverlapSphere(transform.position, 15f);
 
 		foreach (Collider nearbyObjects in colliders){
 			if (nearbyObjects.tag == "Physics" || nearbyObjects.tag == "Player"){
@@ -39,7 +39,7 @@ public class Grenade: MonoBehaviour
 						rb.constraints = RigidbodyConstraints.None;
 						rb.isKinematic = false;
 					}
-					rb.AddExplosionForce(700f, transform.position, 4f);
+					rb.AddExplosionForce(-1000f, transform.position, 15f);
 				}
 			}
 		}
