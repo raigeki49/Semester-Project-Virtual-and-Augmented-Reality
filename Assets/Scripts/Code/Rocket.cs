@@ -34,7 +34,7 @@ public class Rocket: MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
     {
-		if (other.transform.tag != "Player" && !hasExploded){ 
+		if (other.transform.tag != "Player" && other.transform.tag != "InvsWall" && !hasExploded){ 
 			GameObject explosion = Instantiate(explosionEffect, transform.position, transform.rotation);
 			hasExploded = true;
 
