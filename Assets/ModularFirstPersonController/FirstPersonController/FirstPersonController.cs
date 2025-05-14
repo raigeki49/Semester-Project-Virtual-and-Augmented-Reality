@@ -171,6 +171,8 @@ public class FirstPersonController : MonoBehaviour
     private RaycastHit frontWallHit;
     private bool wallFront;
 
+	public int sizeManipulatorPercentage = 50;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -476,6 +478,23 @@ public class FirstPersonController : MonoBehaviour
 			switchWeapon(2);
 			grenadeModel.SetActive(false);
 			rocketLauncherModel.SetActive(true);
+		}
+
+		float mouseWheelValue = Input.mouseScrollDelta.y;
+		if (mouseWheelValue != 0){
+			Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
+			if (Physics.Raycast(ray, out RaycastHit raycastHit)) {
+				if (raycastHit.transform.tag == "Physics"){
+					if (mouseWheelValue > 0 && sizeManipulatorPercentage < 100){
+						raycastHit.transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
+						sizeManipulatorPercentage += 10;
+					}
+					else if (mouseWheelValue < 0 && sizeManipulatorPercentage > 0){
+						raycastHit.transform.localScale -= new Vector3(0.1f, 0.1f, 0.1f);
+						sizeManipulatorPercentage -= 10;
+					}
+				}
+			}
 		}
 
 		WallCheck();

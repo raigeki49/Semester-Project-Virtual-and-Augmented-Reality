@@ -14,6 +14,10 @@ public class Controls : MonoBehaviour
 	public TMP_Text inGameTimerText;
 	public TMP_Text wonTimerText;
 
+	public TMP_Text sizeManipulatorPercentage;
+
+	public FirstPersonController player;
+
 	void Start(){
 		Resume();
 	}
@@ -33,6 +37,8 @@ public class Controls : MonoBehaviour
 				Pause();
 			}
 		}
+
+		sizeManipulatorPercentage.text = (player.sizeManipulatorPercentage).ToString() + " %";
     }
 
 	void Pause(){

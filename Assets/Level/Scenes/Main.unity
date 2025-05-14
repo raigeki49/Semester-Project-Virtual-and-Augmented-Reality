@@ -263,6 +263,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1565416401 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7297708113770114597, guid: 10b33a08141b1154f87a5c4289e543ac, type: 3}
+  m_PrefabInstance: {fileID: 966612607}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d90ba6530d9bfda47abb4610956b2f44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1705685432 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3643894454489666896, guid: 0f51ae187af58e6458f06acc034dd236, type: 3}
@@ -304,6 +315,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4140379964960947862, guid: 0f51ae187af58e6458f06acc034dd236, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1565416401}
     - target: {fileID: 4162062491966819439, guid: 0f51ae187af58e6458f06acc034dd236, type: 3}
       propertyPath: sounds.Array.size
       value: 5
