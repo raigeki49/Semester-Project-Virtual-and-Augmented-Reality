@@ -457,6 +457,7 @@ public class FirstPersonController : MonoBehaviour
 					}
 					else {
 						raycastHit.rigidbody.constraints = RigidbodyConstraints.None;
+						raycastHit.rigidbody.isKinematic = false;
 					}
 				}
 			}
@@ -486,12 +487,16 @@ public class FirstPersonController : MonoBehaviour
 			if (Physics.Raycast(ray, out RaycastHit raycastHit)) {
 				if (raycastHit.transform.tag == "Physics"){
 					if (mouseWheelValue > 0 && sizeManipulatorPercentage < 100){
-						raycastHit.transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
-						sizeManipulatorPercentage += 10;
+						if (raycastHit.transform.localScale.x < 1.3f){
+							raycastHit.transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
+							sizeManipulatorPercentage += 10;
+						}
 					}
 					else if (mouseWheelValue < 0 && sizeManipulatorPercentage > 0){
-						raycastHit.transform.localScale -= new Vector3(0.1f, 0.1f, 0.1f);
-						sizeManipulatorPercentage -= 10;
+						if (raycastHit.transform.localScale.x > 0.7f){
+							raycastHit.transform.localScale -= new Vector3(0.1f, 0.1f, 0.1f);
+							sizeManipulatorPercentage -= 10;
+						}
 					}
 				}
 			}
@@ -600,6 +605,11 @@ public class FirstPersonController : MonoBehaviour
 		Vector3 origin = new Vector3(transform.position.x, transform.position.y - (transform.localScale.y * .5f), transform.position.z);
 		Vector3 direction = transform.TransformDirection(Vector3.forward);
 		wallFront = Physics.SphereCast(origin, sphereCastRadius, direction, out frontWallHit, detectionLength, PreviewCondition.Editor);
+		if (wallFront){
+			if (frontWallHit.transform.tag != "Physics"){
+				wallFront = false;
+			}
+		}
         wallLookAngle = Vector3.Angle(direction, -frontWallHit.normal);
 	}
 

@@ -26,7 +26,7 @@ public class Controls : MonoBehaviour
     void Update()
     {
 		int.TryParse(scoreNumberText.text, out int returnValue);
-		if (returnValue >= 1){
+		if (returnValue >= 3){
 			WonGame();
 		}
         if (Input.GetKeyDown(KeyCode.Escape)){
