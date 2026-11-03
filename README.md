@@ -1,5 +1,25 @@
 # Semester Project Virtual and Augmented Reality
 
+For my Virtual and Augmented Reality class the assignment was to create an experience in Unity.
+I made a small video game that wants the player to use and manipulate physics.
+
+The player has various tools to push, freeze, enlarge and shrink every object in the world. The goal is to build a path to the top to reach a star.
+
+## Arsenal
+1. Finger gun:
+   - Left Click: Slightly push an object on the shot point.
+2. Rocket Launcher:
+   - Shoot a rocket that explodes and pushes everything around it with great force.
+3. Grenade:
+   - Throw a grenade that upon explosion pushes everything around it
+
+Right Click:
+  - Freeze any object in its current position and rotation. **Will unfreeze if any force is applied to it.**
+
+Mousewheel Scroll Up/Down:
+  - Enlarge or shrink any object that the player is currently aiming at. **Look at the bottom right. You have limit energy to enlarge/shrink. Enlarging costs energy while shrinking gains energy. Can't go below 0% and not above 100%.**
+
+**Tip**: Shoot the explosions at your feet and soar through the skies
 
 Credits:
 Skybox: https://freestylized.com/skybox/sky_38/
