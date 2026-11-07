@@ -1,27 +1,58 @@
 # Semester Project Virtual and Augmented Reality
 
+## Overview
 For my Virtual and Augmented Reality class the assignment was to create an experience in Unity.
-I made a small video game that wants the player to use and manipulate physics.
+I made a small video game that requires the player to use and manipulate physics. **Note: The project was not required to be VR/AR. This game is not a VR/AR game.**
 
-The player has various tools to push, freeze, enlarge and shrink every object in the world. The goal is to build a path to the top to reach a star.
+The player has various tools to push, pull, freeze, enlarge and shrink every object in the world. The goal is to build a path to the top to reach a star.
 
-## Arsenal
+## Game
+### Full-Body Avatar & First Person
+The player controls a full body avatar in first person.
+- Blender was used to make the faces transparent but still cast shadows. With this the camera could be placed inside the head to implement an immersive first person view.
+- The avatar plays animations using the animation blend tree. Based on the movement vector the avatar will play a walking animation that is going in the appropriate direction with a falling animation always taking priority if the vector is going up or down due to jumping or falling.
+- IK was used to make the right arm and hand always aim towards the middle of the screen so that it feels like the finger gun and rocket launcher are always being pointed towards where you actually want to shoot.
+
+### Physics Manipulation Gameplay
+Player interactions come from either shooting raycasts from the player or throwing projectiles to the center of the screen. Projectiles when detonating create an overlap sphere that detects all rigidbodies it is overlapping with.
+- When detecting collision depending on the weapon being used a force will be applied either pointing away from the raycast or sphere, or towards the sphere. In the case of the raycast the force is applied on the collision point and for the sphere the force is applied from the center of the sphere.
+
+All the interactable GameObjects are rigidbodies, initially their position and rotation are frozen so that they are stable but if the player interacts with them through the physics manipulation their position and rotations are unfrozen. The player is able to freeze any object's position and rotation again.
+
+## Controls
 1. Finger gun:
-   - Left Click: Slightly push an object on the shot point.
+   - Left Click: Slightly push an object.
+
 2. Rocket Launcher:
    - Shoot a rocket that explodes and pushes everything around it with great force.
 3. Grenade:
-   - Throw a grenade that upon explosion pushes everything around it
+   - Throw a grenade that upon explosion pulls everything around it.
 
-Right Click:
-  - Freeze any object in its current position and rotation. **Will unfreeze if any force is applied to it.**
+4. Right Click:
+  - Freeze any object in its current position and rotation. **Will unfreeze if any force is applied to it.** 
 
-Mousewheel Scroll Up/Down:
-  - Enlarge or shrink any object that the player is currently aiming at. **Look at the bottom right. You have limit energy to enlarge/shrink. Enlarging costs energy while shrinking gains energy. Can't go below 0% and not above 100%.**
+5. Mousewheel Scroll Up/Down:
+  - Enlarge or shrink any object that the player is currently aiming at. 
+  **Enlarging costs energy while shrinking gains energy. Stays between 0% and 100%.**
 
-**Tip**: Shoot the explosions at your feet and soar through the skies
+6. Press number key 1-3 to change weapon
+   #1 for Finger gun
+   #2 for Grenade
+   #3 for Rocket Launcher
 
-Credits:
+## Tech Stack
+Built with Unity 6000.1.1f1 and C#.
+
+## Setup & Running
+A release is provided for you to download and play.
+
+Otherwise you can import this repo into Unity 6000.1.1f1 (recommended for guaranteed compatibility) and build the project yourself.
+
+## Status
+This project is completed and earned a grade of 19.10/20(scale of 20).
+
+
+## Credits
 Skybox: https://freestylized.com/skybox/sky_38/
 
 Grass Texture: https://opengameart.org/content/awesome-seamless-grass-texture
@@ -53,3 +84,5 @@ Animations: https://www.mixamo.com/
 
 Character Model: https://monster-black.itch.io/character-boy-2-fbx
 
+## License
+MIT
