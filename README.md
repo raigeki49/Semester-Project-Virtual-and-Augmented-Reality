@@ -1,10 +1,10 @@
 # Semester Project Virtual and Augmented Reality
 
 ## Overview
-For my Virtual and Augmented Reality class the assignment was to create an experience in Unity.
-I made a small video game that requires the player to use and manipulate physics. **Note: The project was not required to be VR/AR. This game is not a VR/AR game.**
+For my Virtual and Augmented Reality class at the University of Luxembourg (May 2025) the assignment was to create an experience in Unity.
+I worked solo and made a small video game that requires the player to use and manipulate physics. **Note: The project was not required to be VR/AR. This game is not a VR/AR game.**
 
-The player has various tools to push, pull, freeze, enlarge and shrink every object in the world. The goal is to build a path to the top to reach a star.
+The player has various tools to push, pull, freeze, enlarge and shrink every object in the world. The goal is to build a path to the top to reach a star. Each time you reach one it moves to a new random spot. Collect 3 stars to finish the game, a timer keeps track of how long it took you.
 
 ## Game
 ### Full-Body Avatar & First Person
@@ -23,30 +23,39 @@ All the interactable GameObjects are rigidbodies, initially their position and r
 1. Finger gun:
    - Left Click: Slightly push an object.
 
-2. Rocket Launcher:
-   - Shoot a rocket that explodes and pushes everything around it with great force.
-3. Grenade:
-   - Throw a grenade that upon explosion pulls everything around it.
+2. Grenade:
+   - Left Click: Throw a grenade that upon explosion pulls everything around it.
+
+3. Rocket Launcher:
+   - Left Click: Shoot a rocket that explodes and pushes everything around it with great force.
 
 4. Right Click:
-  - Freeze any object in its current position and rotation. **Will unfreeze if any force is applied to it.** 
+   - Freeze any object in its current position and rotation. Right Click it again to unfreeze it. **Will unfreeze if any force is applied to it.**
 
 5. Mousewheel Scroll Up/Down:
-  - Enlarge or shrink any object that the player is currently aiming at. 
-  **Enlarging costs energy while shrinking gains energy. Stays between 0% and 100%.**
+   - Enlarge or shrink any object that the player is currently aiming at.
+   **Enlarging increases energy while shrinking decreases it. Energy starts at 50% and stays between 0% and 100%.**
 
-6. Press number key 1-3 to change weapon
-   #1 for Finger gun
-   #2 for Grenade
-   #3 for Rocket Launcher
+6. Press number key 1-3 to change weapon:
+   - #1 for Finger gun
+   - #2 for Grenade
+   - #3 for Rocket Launcher
+
+7. WASD, Space and Left Shift:
+   - Move, jump and sprint. Walk into an object while holding W to climb it.
+
+8. Esc:
+   - Pause the game and show the tutorial.
 
 ## Tech Stack
-Built with Unity 6000.1.1f1 and C#.
+Built with Unity 6000.1.1f1 and C#, using the Universal Render Pipeline (URP) and the Animation Rigging package for the IK.
+
+My own scripts are in `Assets/Scripts/Code`. The player is based on the Modular First Person Controller from the Asset Store (see Credits). I extended its script `Assets/ModularFirstPersonController/FirstPersonController/FirstPersonController.cs` with the weapons, freezing, resizing, wall climbing and animations.
 
 ## Setup & Running
-A release is provided for you to download and play.
+A [release](https://github.com/raigeki49/Semester-Project-Virtual-and-Augmented-Reality/releases) is provided for you to download and play.
 
-Otherwise you can import this repo into Unity 6000.1.1f1 (recommended for guaranteed compatibility) and build the project yourself.
+Otherwise you can import this repo into Unity 6000.1.1f1 (recommended for guaranteed compatibility) and build the project yourself. The game scene is `Assets/Level/Scenes/Main.unity`.
 
 ## Status
 This project is completed and earned a grade of 19.10/20(scale of 20).
@@ -85,4 +94,6 @@ Animations: https://www.mixamo.com/
 Character Model: https://monster-black.itch.io/character-boy-2-fbx
 
 ## License
-MIT
+My own code is licensed under MIT, see [LICENSE](LICENSE). Third-party assets listed under Credits keep their own licenses.
+
+If you own any of the assets or content used in this project and have a problem with it being here, please contact me by opening an issue on this repository and I will remove it.
