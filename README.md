@@ -1,5 +1,7 @@
 # Semester Project Virtual and Augmented Reality
 
+![Gameplay: climbing up towards the star](docs/media/demonstration-demo.gif)
+
 ## Overview
 For my Virtual and Augmented Reality class at the University of Luxembourg (May 2025) the assignment was to create an experience in Unity.
 I worked solo and made a small video game that requires the player to use and manipulate physics. **Note: The project was not required to be VR/AR. This game is not a VR/AR game.**
@@ -26,6 +28,8 @@ All the interactable GameObjects are rigidbodies, initially their position and r
 2. Grenade:
    - Left Click: Throw a grenade that upon explosion pulls everything around it.
 
+   ![Grenade pulling nearby objects together](docs/media/demonstration-grenade.gif)
+
 3. Rocket Launcher:
    - Left Click: Shoot a rocket that explodes and pushes everything around it with great force.
 
@@ -35,6 +39,8 @@ All the interactable GameObjects are rigidbodies, initially their position and r
 5. Mousewheel Scroll Up/Down:
    - Enlarge or shrink any object that the player is currently aiming at.
    **Enlarging increases energy while shrinking decreases it. Energy starts at 50% and stays between 0% and 100%.**
+
+   ![Enlarging objects raises the energy from 0% to 100%](docs/media/demonstration-enlarge.gif)
 
 6. Press number key 1-3 to change weapon:
    - #1 for Finger gun
